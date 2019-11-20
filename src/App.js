@@ -1,7 +1,10 @@
-import React from 'react';
+import React,{ useState} from 'react';
 import Upload from './components/Upload'
 
 function App() {
+  
+  const [fileUrl, setFileUrl] = useState('');
+  
   return (
     <div className="App">
         <div className="container">
