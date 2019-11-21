@@ -3,6 +3,8 @@ import axios from 'axios'
 
 const Upload = () =>{
     
+    // set this to global, move to app js
+    // create an onclick that will affect app js.
     const [toUpload,setUpload] = useState();
     
     const onChangeHandler = (e) =>{

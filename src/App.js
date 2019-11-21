@@ -5,6 +5,10 @@ function App() {
   
   const [fileUrl, setFileUrl] = useState('');
   
+  const setCurrentFile = (uploadedFile) =>{
+    setFileUrl(uploadedFile)
+  }
+  
   return (
     <div className="App">
         <div className="container">
