@@ -1,7 +1,8 @@
 import React,{ useState} from 'react'
 import axios from 'axios'
+import { Tesseract } from "tesseract.ts";
 
-const Upload = () =>{
+const Upload = ({handleOcrChange,handleStatus}) =>{
     
     // set this to global, move to app js
     // create an onclick that will affect app js.
@@ -29,12 +30,34 @@ const Upload = () =>{
 	            console.log(res)
 	            console.log("Image Link: ",res.data.data.link)
 	            setUpload(res.data.data.link)
+	            
+	            //App statuses
+	            tesseractScan(res.data.data.link)
+	            handleStatus("scanning");
             }
         )
     } 
     
+    const tesseractScan = (imgurUrl) =>{
+        //Tessaract Upload : Working
+        Tesseract.recognize(imgurUrl)
+      	.progress(progress => {
+        	console.log('progress', progress);
+        	
+      	}).then(result => {
+	      console.log('result', result);
+	      Tesseract.terminate();
+
+	      console.log(result.text);
+	      
+	      //App statuses
+	      handleOcrChange(result.text,imgurUrl)
+	      handleStatus("done");
+    	});
+    }
+    
     return (
-        <div className="scanContainer">
+        <React.Fragment>
             <h2>Text Scanner</h2>
             <p>Scans your image for text.</p>
             <div className="upload-btn-wrapper">
@@ -45,7 +68,7 @@ const Upload = () =>{
                     onChange={(e) =>onChangeHandler(e)}
                 />
             </div>    
-        </div>
+        </React.Fragment>
     )
 }
 
