@@ -13,4 +13,4 @@ An app using [Tesseract.js](https://tesseract.projectnaptha.com/) and Imgur API 
 <p align="center"> <img src="https://i.imgur.com/rbx1PPm.png"> </p>
 
 ### Screenshot 3:
-<p align="center"> <img src="https://i.imgur.com/CegMmLS.png"> </p>
+<p align="center"> <img src="https://i.imgur.com/qRcFQ1k.png"> </p>
