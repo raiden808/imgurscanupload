@@ -1,5 +1,6 @@
 import React,{ useState} from 'react';
 import Upload from './components/Upload'
+import CopyText from './components/CopyText.js'
 
 function App() {
   
@@ -26,9 +27,12 @@ function App() {
     SetOcrStatus(currentStatus)
   }
   
+  const handleClickReset = () =>{
+    SetOcrStatus("idle")
+  }
+  
   switch (ocrStatus) {
     case 'idle':
-      // code
       renderStatus =  
         <Upload 
           handleOcrChange={handleOcrChange} 
@@ -36,14 +40,20 @@ function App() {
         />
       break;
     case 'scanning':
-      // code
       renderStatus =  
         <div className="lds-dual-ring"></div>
       break;
     case 'done':
-      // code
       renderStatus =  
-        <p>{ocrText}</p>
+        <React.Fragment>
+          <p>{ocrText}</p>
+          <CopyText textValue={ocrText} />
+          <button 
+            className="btn btnScan" 
+            onClick={handleClickReset}>
+            Scan Again
+          </button>
+        </React.Fragment>
       break;
     
     default:
@@ -53,7 +63,6 @@ function App() {
           handleStatus={handleStatus}
         />
   }
-  
   
   return (
     <div className="App">

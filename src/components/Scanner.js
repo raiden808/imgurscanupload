@@ -6,6 +6,7 @@ const Scanner = ({imagePath}) =>{
     console.log(imagePath)
     
     
+    
     return(
         <h2>Test</h2>    
     )
