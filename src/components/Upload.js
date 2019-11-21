@@ -27,8 +27,8 @@ const Upload = ({handleOcrChange,handleStatus}) =>{
                 'content-type': 'multipart/form-data'
             }
         }).then(res => { // then print response status
-	            console.log(res)
-	            console.log("Image Link: ",res.data.data.link)
+	            //console.log(res)
+	            //console.log("Image Link: ",res.data.data.link)
 	            setUpload(res.data.data.link)
 	            
 	            //App statuses
@@ -42,13 +42,13 @@ const Upload = ({handleOcrChange,handleStatus}) =>{
         //Tessaract Upload : Working
         Tesseract.recognize(imgurUrl)
       	.progress(progress => {
-        	console.log('progress', progress);
+        	//console.log('progress', progress);
         	
       	}).then(result => {
-	      console.log('result', result);
+	      //console.log('result', result);
 	      Tesseract.terminate();
 
-	      console.log(result.text);
+	      //console.log(result.text);
 	      
 	      //App statuses
 	      handleOcrChange(result.text,imgurUrl)
