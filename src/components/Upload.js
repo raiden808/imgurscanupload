@@ -7,20 +7,16 @@ const Upload = () =>{
     
     const onChangeHandler = (e) =>{
         // file object data
-        
-        console.log(e.target.files)
-        
-        setUpload(e.target.files);
-        
-        console.log("axios triggered")
-        
-       
+        processUpload(e.target.files[0]);
+    }
+    
+    const processUpload = (fileObject) =>{
         
         var apiUrl = 'https://api.imgur.com/3/image';
-        var apiKey = '41491dab8a7c338';
+        var apiKey = process.env.REACT_APP_IMGUR_API;
         
         const data = new FormData()
-        data.append('image',e.target.files[0])
+        data.append('image',fileObject)
             
         axios.post(apiUrl, data, {
             headers: {
@@ -29,31 +25,10 @@ const Upload = () =>{
             }
         }).then(res => { // then print response status
 	            console.log(res)
+	            console.log("Image Link: ",res.data.data.link)
+	            setUpload(res.data.data.link)
             }
         )
-    }
-    
-    
-    //todo - set up api upload for imgur
-    const processUpload = (fileObject) =>{
-        
-        console.log("File Data: ",fileObject)
-        
-        // const data = new FormData()
-        // var apiUrl = 'https://api.imgur.com/3/image';
-        // var apiKey = '41491dab8a7c338';
-        
-        // data.append('file',fileObject)
-            
-        // axios.post(apiUrl, data, {
-        //     headers: {
-        //         'authorization': 'Client-ID ' + apiKey,
-        //         'content-type': 'multipart/form-data'
-        //     }
-        // }).then(res => { // then print response status
-	       //     console.log(res)
-        //     }
-        // )
     } 
     
     return (
